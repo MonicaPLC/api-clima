@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="funciones.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Ver el estado del tiempo</title>
+  </head>
+  <body>
+    <input id="city"></input>
+    <button id="getWeatherForcast">Revisar Clima</button>
+   <div id="showWeatherForecast"></div>
+
+   
+
+    <script>
+      $(document).ready(function () {
+
+        $("#getWeatherForcast").click(function (){
+          var city=$("#city").val();
+          var key='712119e3685e36d99f2141a71fa7ebac';
+
+          $.ajax({
+
+            url:'http://api.openweathermap.org/data/2.5/weather',
+            dataType:'json',
+            type:'GET',
+            data:{q:city,appid:key, units:'metric'},
+
+            success:function(data){
+var wf='';
+$each(data.weather,function(idex,val){
+  wf+= '<p><b>'+ data.name + "</b><img src="+ val.icon +".png></p>"+
+  data.main.temp + '&deg;C' + '|' + val.main + "," 
+  val.description
+
+            });
+
+            $("#showWeatherForcast").htm(wf)
+
+
+          }
+
+
+        });  
+      
+      });
+
+    });
+
+    </script>
+  </body>
+</html>
