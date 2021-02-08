@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="" href="" />
+  <title>Ver el estado del tiempo</title>
+</head>
+
+<body>
+  <input id="city"></input>
+  <button id="enviar">Revisar Clima</button>
+  <div id="resultado"></div>
+
+
+
+  <script>
+
+
+    $(document).ready(function () {
+
+      $('#enviar').on('click', function () {
+
+        var busqueda = $('input').val();
+
+        $.get(`https://api.openweathermap.org/data/2.5/weather?q=${busqueda},cl&&appid=712119e3685e36d99f2141a71fa7ebac `, function (res) {
+          console.log(res);
+          $('#resultado').html(`
+  
+          <h5>${res.name}</h5>
+          <p>Temperatura: ${(res.main.temp - 273.15).toFixed(1)}°C</p>
+          
+      
+      `)
+        }, 'json');
+      });
+    });
+
+
+
+  </script>
+</body>
+
+</html>
