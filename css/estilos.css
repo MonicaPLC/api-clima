@@ -1,0 +1,18 @@
+#contenedor {
+  width: 500px;
+  height: 300px;
+  margin-top: 200px;
+}
+
+body {
+  background: url(../img/paisaje.jpg);
+  background-size: cover;
+}
+
+#resultado {
+  background-color: white;
+  margin-top: 30px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid black;
+}
